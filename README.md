@@ -14,6 +14,7 @@
     <a href="#installation">Installation</a>
   • <a href="#dialog-usage">Usage</a>
   • <a href="#customization">Customization</a>
+  • <a href="#known-bugs">Known bugs</a>
   • <a href="https://github.com/nickoneill/PermissionScope/issues">Issues</a>
   • <a href="#license">License</a>
 </p>
@@ -42,12 +43,12 @@ Installation for [Carthage](https://github.com/Carthage/Carthage) is simple enou
 
 `github "nickoneill/PermissionScope" ~> 1.0`
 
-As for [Cocoapods](https://cocoapods.org), use this to get the latest code:
+As for [Cocoapods](https://cocoapods.org), use this to get the latest release:
 
 ```ruby
 use_frameworks!
 
-pod 'PermissionScope', '~> 1.0'
+pod 'PermissionScope'
 ```
 
 And `import PermissionScope` in the files you'd like to use it.
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Set up permissions
-         pscope.addPermission(ContactsPermission(),
+        pscope.addPermission(ContactsPermission(),
             message: "We use this to steal\r\nyour friends")
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
             message: "We use this to send you\r\nspam and love notes")
@@ -73,9 +74,9 @@ class ViewController: UIViewController {
 	
 	// Show dialog with callbacks
         pscope.show(authChange: { (finished, results) -> Void in
-            println("got results \(results)")
+            print("got results \(results)")
         }, cancelled: { (results) -> Void in
-            println("thing was cancelled")
+            print("thing was cancelled")
         })   
     }
 }
@@ -193,7 +194,7 @@ Use `NSLocationAlwaysUsageDescription` or `NSLocationWhenInUseUsageDescription` 
 
 ### bluetooth
 
-The *NSBluetoothPeripheralUsageDescription* key in the Info.plist specifying a short description of why your app needs to act as a bluetooth peripheralin the background is **optional**.
+The *NSBluetoothPeripheralUsageDescription* key in the Info.plist specifying a short description of why your app needs to act as a bluetooth peripheral in the background is **optional**.
 
 However, enabling `background-modes` in the capabilities section and checking the `acts as a bluetooth LE accessory` checkbox is **required**.
 
@@ -212,7 +213,16 @@ Also, remember to add an observer and manage [CKAccountChangedNotification](http
 Feel free to add your project in a PR if you're using PermissionScope:
 
 <img src="http://raquo.net/images/icon-round-80.png" width="40" height="40" /><br />
-<a href="https://gettre.at">treat</a>
+<a href="https://gettre.at">treat</a><br /><br />
+<img src="http://lootapp.io/assets/img/loot-app-icon.png" width="40" height="40" /><br />
+<a href="https://lootapp.io">Loot</a>
+
+## known bugs
+
+* Link "**Show me**" does not work on denied a permission (#61)
+
+Solution: Run your app without the debugger.
+
 
 ## license
 

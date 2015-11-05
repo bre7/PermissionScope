@@ -14,7 +14,6 @@ import Photos
 import EventKit
 import CoreBluetooth
 import CoreMotion
-import HealthKit
 import CloudKit
 import Accounts
 
